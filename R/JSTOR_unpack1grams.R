@@ -1,7 +1,7 @@
 #' Unpack JSTOR journal articles and bibliographic data to a Document Term Matrix of 1-grams
 #' 
 #' @description Import journal articles and bibliographic data from the downloaded zipfile and reshape ready for simple text mining. For use with JSTOR's Data for Research datasets (http://dfr.jstor.org/). 
-#' @param path full path to directory containing 'wordcounts' folder and the citations.tsv file. These are obtained after unzipping the file downloaded from DfR (you should unzip the file before running this function). Default is the working directory.
+#' @param path full path to directory containing 'wordcounts' folder and the citations.CSV file. These are obtained after unzipping the file downloaded from DfR (you should unzip the file before running this function). Default is the working directory.
 #' @param parallel if TRUE, apply function in parallel, using the parallel library. Default is FALSE as this is typically faster for smaller datasets (ie. ~5000 articles) due to communication overhead.
 #' @return Returns a list of two items. First is "wordcounts", a Document Term Matrix of 1-grams, and second is 'bibliodata', a data frame of bibliographic information for all articles. 
 #' @examples 
@@ -118,7 +118,7 @@ myfiles1 <- myfiles[full]
   setwd(path) # change this to the location of the citations.csv file
     
   # now read in file
-  cit <- read.delim("citations.tsv", row.names = NULL, comment.char = "", header = TRUE, stringsAsFactors = FALSE, colClasses="character", quote = "")
+  cit <- read.delim("citations.CSV", row.names = NULL, comment.char = "", header = TRUE, stringsAsFactors = FALSE, colClasses="character", quote = "")
   # replace for-slash with underscore to make it match the filenames
   # and replace odd \t that was added during import 
   library(stringr)
